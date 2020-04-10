@@ -1,35 +1,39 @@
-const path = require("path");
-const DotenvPlugin = require("dotenv-webpack");
+const path = require('path')
+const DotenvPlugin = require('dotenv-webpack')
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: './src/index.js',
   module: {
     rules: [
       {
         // loads eslint before converting react code
         test: /\.(js|jsx)$/,
-        enforce: "pre",
+        enforce: 'pre',
         include: /src/,
-        loader: "eslint-loader",
+        loader: 'eslint-loader',
         options: {
-          emitWarning: process.env.NODE_ENV !== "production",
+          emitWarning: process.env.NODE_ENV !== 'production',
         },
       },
       {
         // transpiles react code
         test: /\.(js|jsx)$/,
         include: /src/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
       },
       {
         test: /\.html$/,
-        loader: "html-loader",
+        loader: 'html-loader',
       },
     ],
   },
-  plugins: [new DotenvPlugin()],
+  plugins: [
+    new DotenvPlugin({
+      systemvars: true,
+    }),
+  ],
 
   resolve: {
-    extensions: [".js", ".json", ".jsx"],
+    extensions: ['.js', '.json', '.jsx'],
   },
-};
+}
