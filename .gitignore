@@ -13,11 +13,7 @@ coverage/
 # environment variable files
 .env
 
-# lock files
-yarn.lock
-package-lock.json
-
 # error log files
-yarn-error.log
-yarn.debug.log
-npm-debug.log
+*.log
+
+.eslintcache
